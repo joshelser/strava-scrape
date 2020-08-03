@@ -9,24 +9,6 @@
   </properties>
   <build>
     <plugins>
-      <!--plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>build-helper-maven-plugin</artifactId>
-        <version>3.2.0</version>
-        <executions>
-          <execution>
-            <phase>generate-sources</phase>
-            <goals>
-              <goal>add-source</goal>
-            </goals>
-            <configuration>
-              <sources>
-                <source>src/main/generated</source>
-              </sources>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin-->
       <plugin>
         <groupId>io.swagger</groupId>
         <artifactId>swagger-codegen-maven-plugin</artifactId>
@@ -37,11 +19,11 @@
               <goal>generate</goal>
             </goals>
             <configuration>
-              <inputSpec>https://developers.strava.com/swagger/swagger.json</inputSpec><!--${project.basedir}/src/main/resources/api.yaml</inputSpec>-->
+              <inputSpec>${project.basedir}/src/main/swagger/strava.json</inputSpec>
               <language>java</language>
-              <!--configOptions>
-                <sourceFolder>src/main/generated/</sourceFolder>
-              </configOptions-->
+              <configOptions>
+                <dateLibrary>joda</dateLibrary>
+              </configOptions>
             </configuration>
           </execution>
         </executions>
@@ -79,11 +61,6 @@
       <artifactId>swagger-jaxrs2-servlet-initializer-v2</artifactId>
       <version>2.1.4</version>
     </dependency>
-    <!--dependency>
-      <groupId></groupId>
-      <artifactId></artifactId>
-      <version></version>
-    </dependency-->
     <dependency>
       <groupId>com.squareup.okhttp</groupId>
       <artifactId>okhttp</artifactId>
@@ -100,14 +77,15 @@
       <version>2.7.0</version>
     </dependency>
     <dependency>
-      <groupId>org.threeten</groupId>
-      <artifactId>threetenbp</artifactId>
-      <version>1.4.4</version>
+      <groupId>joda-time</groupId>
+      <artifactId>joda-time</artifactId>
+      <version>2.10.6</version>
     </dependency>
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <version>4.13</version>
+      <scope>test</scope>
     </dependency>
   </dependencies>
 </project>
